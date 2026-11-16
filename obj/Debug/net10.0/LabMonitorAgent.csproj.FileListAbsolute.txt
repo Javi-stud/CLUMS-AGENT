@@ -47,3 +47,4 @@ C:\Users\jayvince.singco\LabMonitorAgent\obj\Debug\net10.0\refint\LabMonitorAgen
 C:\Users\jayvince.singco\LabMonitorAgent\obj\Debug\net10.0\LabMonitorAgent.pdb
 C:\Users\jayvince.singco\LabMonitorAgent\obj\Debug\net10.0\LabMonitorAgent.genruntimeconfig.cache
 C:\Users\jayvince.singco\LabMonitorAgent\obj\Debug\net10.0\ref\LabMonitorAgent.dll
+C:\Users\jayvince.singco\LabMonitorAgent\obj\Debug\net10.0\LabMonitorAgent.sourcelink.json
