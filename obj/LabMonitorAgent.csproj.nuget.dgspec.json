@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jayvince.singco\\LabMonitorAgent\\LabMonitorAgent.csproj": {}
+    "C:\\Users\\jayvince.singco\\CLUMS\\LabMonitorAgent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jayvince.singco\\LabMonitorAgent\\LabMonitorAgent.csproj": {
+    "C:\\Users\\jayvince.singco\\CLUMS\\LabMonitorAgent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jayvince.singco\\LabMonitorAgent\\LabMonitorAgent.csproj",
+        "projectUniqueName": "C:\\Users\\jayvince.singco\\CLUMS\\LabMonitorAgent.csproj",
         "projectName": "LabMonitorAgent",
-        "projectPath": "C:\\Users\\jayvince.singco\\LabMonitorAgent\\LabMonitorAgent.csproj",
+        "projectPath": "C:\\Users\\jayvince.singco\\CLUMS\\LabMonitorAgent.csproj",
         "packagesPath": "C:\\Users\\jayvince.singco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jayvince.singco\\LabMonitorAgent\\obj\\",
+        "outputPath": "C:\\Users\\jayvince.singco\\CLUMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jayvince.singco\\AppData\\Roaming\\NuGet\\NuGet.Config"

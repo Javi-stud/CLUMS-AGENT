@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q9emFjAsaq0=",
+  "dgSpecHash": "u5nyTRpEctI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jayvince.singco\\LabMonitorAgent\\LabMonitorAgent.csproj",
+  "projectFilePath": "C:\\Users\\jayvince.singco\\CLUMS\\LabMonitorAgent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.15\\microsoft.extensions.configuration.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.15\\microsoft.extensions.configuration.abstractions.10.0.15.nupkg.sha512",
