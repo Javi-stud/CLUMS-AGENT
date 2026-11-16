@@ -24,15 +24,18 @@ public class Worker(
     await logWriter.LogEventAsync("AGENT_STARTED");
     logger.LogInformation("Agent Started");
 
-    string computerName = computerInfo.GetComputerName();
-    string ipAddress = networkInfo.GetEthernetIPAddress();
-    string macAddress = networkInfo.GetEthernetMacAddress();
-    string computerUuid = computerIdentity.GetOrCreateUuid();
+    ComputerDetails computer = new ComputerDetails
+{
+    ComputerUuid = computerIdentity.GetOrCreateUuid(),
+    ComputerName = computerInfo.GetComputerName(),
+    IpAddress = networkInfo.GetEthernetIPAddress(),
+    MacAddress = networkInfo.GetEthernetMacAddress()
+};
 
-    logger.LogInformation("Computer UUID: {uuid}", computerUuid);
-    logger.LogInformation("MAC Address: {mac}", macAddress);
-    logger.LogInformation("Computer Name: {name}", computerName);
-    logger.LogInformation("IP Address: {ip}", ipAddress);
+    logger.LogInformation("Computer UUID: {uuid}", computer.ComputerUuid);
+    logger.LogInformation("Computer Name: {name}", computer.ComputerName);
+    logger.LogInformation("IP Address: {ip}", computer.IpAddress);
+    logger.LogInformation("MAC Address: {mac}", computer.MacAddress);
 
     try
     {
