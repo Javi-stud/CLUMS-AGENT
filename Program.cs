@@ -36,6 +36,9 @@ builder.Services.AddSingleton<ComputerInfo>();
 builder.Services.AddSingleton<AgentLogWriter>();
 builder.Services.AddSingleton<EventQueue>();
 builder.Services.AddSingleton<BackendClient>();
+
+builder.Services.AddSingleton<ApplicationMonitor>();
+
 builder.Services.AddHostedService<Worker>();
 
 var host = builder.Build();

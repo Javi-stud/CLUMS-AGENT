@@ -11,7 +11,8 @@ public class Worker(
     NetworkInfo networkInfo,
     ComputerIdentity computerIdentity,
     BackendClient backend,
-    EventQueue queue
+    EventQueue queue,
+    ApplicationMonitor applicationMonitor
 ) : BackgroundService
 {
     private const int BatchSize = 100;
@@ -49,6 +50,12 @@ await queue.EnqueueAsync(
 
 logger.LogInformation("Student login event queued for {username}", username);
 
+// Start application monitoring after the student login event.
+Task applicationMonitoringTask =
+    applicationMonitor.RunAsync(stoppingToken);
+
+logger.LogInformation("Application monitoring task started");
+
 logger.LogInformation("Computer Information JSON:");
         logger.LogInformation("{json}", JsonSerializer.Serialize(computer, ApiJson.Indented));
 
@@ -73,7 +80,8 @@ logger.LogInformation("Computer Information JSON:");
         {
             // normal shutdown, handled below
         }
-
+        
+        await applicationMonitoringTask;
         await logWriter.LogEventAsync(AgentEventTypes.AgentStopped);
         await queue.EnqueueAsync(AgentEvent.Create(AgentEventTypes.AgentStopped));
         await TryFinalFlushAsync();
