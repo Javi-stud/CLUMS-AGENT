@@ -1,0 +1,10 @@
+# Build output
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Never commit the server key or local settings
+appsettings.Local.json
+secrets.json

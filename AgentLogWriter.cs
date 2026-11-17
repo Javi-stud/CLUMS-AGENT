@@ -7,8 +7,9 @@ public class AgentLogWriter
 
     public AgentLogWriter()
     {
+        // ProgramData, so the log is in the same place no matter which account runs the agent.
         logDirectory = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
             "LabMonitorAgent",
             "Logs"
         );
@@ -21,14 +22,21 @@ public class AgentLogWriter
 
     public async Task LogEventAsync(string eventName)
     {
-        Directory.CreateDirectory(logDirectory);
+        try
+        {
+            Directory.CreateDirectory(logDirectory);
 
-        string timestamp = DateTimeOffset.Now.ToString(
-            "yyyy-MM-dd HH:mm:ss zzz"
-        );
+            string timestamp = DateTimeOffset.Now.ToString(
+                "yyyy-MM-dd HH:mm:ss zzz"
+            );
 
-        string logEntry = $"[{timestamp}] {eventName}{Environment.NewLine}";
+            string logEntry = $"[{timestamp}] {eventName}{Environment.NewLine}";
 
-        await File.AppendAllTextAsync(logFilePath, logEntry);
+            await File.AppendAllTextAsync(logFilePath, logEntry);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            // A full disk or locked file must never stop the agent from monitoring.
+        }
     }
 }

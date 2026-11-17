@@ -6,4 +6,5 @@ public class ComputerDetails
     public string ComputerName { get; set; } = "";
     public string IpAddress { get; set; } = "";
     public string MacAddress { get; set; } = "";
+    public string AgentVersion { get; set; } = "";
 }

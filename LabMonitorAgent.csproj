@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-LabMonitorAgent-a00df5f9-2518-4bff-8fee-cc8a40f09f31</UserSecretsId>
+    <!-- Reported to the server as agent_version. Bump on every release. -->
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
