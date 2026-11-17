@@ -1,93 +1,53 @@
-# Computer Laboratory User Monitoring System (CLUMS)
+# CLUMS Agent: setup (stage 1)
 
-## Project Overview
+What the agent does now: registers with the CLUMS server, sends a heartbeat every few seconds,
+and sends `AGENT_STARTED` / `AGENT_STOPPED` events. Events are kept in a file until the server
+confirms them, so nothing is lost if the server or network is down.
 
-The **Computer Laboratory User Monitoring System (CLUMS)** is a centralized computer monitoring system designed to automatically record and monitor user activities across computers in a computer laboratory.
+Not done yet: student login/logout, running apps, shutdown/restart detection, running as a
+Windows service, and self-update (an "Update" command from the dashboard is only logged).
 
-The system uses **C# (.NET) monitoring agents** installed on each laboratory computer to collect user and system activity records. These agents communicate with a centralized **Python backend** through REST APIs to transmit monitoring events and heartbeat messages.
+## Run it (on your PC, for testing)
 
-The Python backend processes incoming data, manages monitoring records, handles authentication, and communicates with the database.
+1. Start the backend (see the CLUMS backend README) and note `AGENT_API_KEY` from its `.env`.
+2. In this folder:
+   ```
+   dotnet user-secrets set "Backend:AgentApiKey" "<the AGENT_API_KEY value>"
+   dotnet run
+   ```
+   If the backend isn't on `http://localhost:8000`, change `Backend:BaseUrl` in `appsettings.json`
+   (or set it the same way as the key).
+3. The computer appears on the dashboard as **Idle**. Stop the agent with Ctrl+C and it shows
+   **Offline** with a "Normal shutdown" record; start it again and it comes back.
 
-Administrators can access a centralized web dashboard developed using HTML and CSS to monitor computer availability, view student sessions, review application usage, and track disconnection records.
+In the backend's `.env`, set `LATEST_AGENT_VERSION=1.0.0` (this agent's version, from `<Version>`
+in the `.csproj`). Otherwise the dashboard will say this agent is behind the current release.
 
-## System Architecture
+## Settings
 
-CLUMS follows a client-server architecture consisting of three primary components:
+| Setting | Where | Meaning |
+|---|---|---|
+| `Backend:BaseUrl` | `appsettings.json` | Server address, e.g. `http://192.168.1.10:8000` |
+| `Backend:AgentApiKey` | user-secrets (dev) or environment variable `Backend__AgentApiKey` (lab PCs) | Must equal `AGENT_API_KEY` on the server. **Never commit it.** |
+| `Backend:RequestTimeoutSeconds` | `appsettings.json` | How long to wait for the server (default 10) |
 
-1. **Frontend (HTML and CSS)** – Provides the administrator dashboard.
-2. **Backend (Python)** – Processes requests, manages records, handles authentication, and provides REST APIs.
-3. **Monitoring Agents (C# .NET)** – Installed on laboratory computers to collect and transmit monitoring events.
+The agent won't start without a key, and tells you how to set one. The heartbeat interval isn't set here:
+the server sends it (change it on the dashboard's Agents screen).
 
-### System Components
+Use `https://` for the server if the lab network isn't closed: the key is sent with every request.
 
-**1. Frontend – HTML and CSS**
+## Files on the PC (`C:\ProgramData\LabMonitorAgent\`)
 
-- Provides the administrator dashboard.
-- Displays laboratory computer statuses.
-- Displays student login and logout records.
-- Displays application usage history.
-- Provides disconnection monitoring.
-- Displays reports and analytics.
-- Communicates with the Python backend through REST APIs.
-
-**2. Backend – Python**
-
-- Provides REST API endpoints.
-- Receives monitoring events from C# agents.
-- Processes and validates incoming records.
-- Manages computer registration.
-- Manages student sessions.
-- Processes application usage records.
-- Handles heartbeat monitoring.
-- Detects missing agent communications.
-- Manages administrator authentication.
-- Communicates with the database.
-- Provides monitoring information to the frontend.
-
-**3. Monitoring Agents – C# (.NET)**
-
-Installed on each laboratory computer.
-
-Responsibilities:
-
-- Detect student login activities.
-- Detect user logout activities.
-- Monitor system shutdowns and restarts.
-- Monitor running applications.
-- Record application start and end times.
-- Collect computer information.
-- Send periodic heartbeat messages.
-- Transmit monitoring events to the Python backend.
-- Detect and synchronize pending events after reconnection.
-
-## Technology Stack
-
-| Component | Technology |
+| File | Purpose |
 |---|---|
-| Frontend | HTML, CSS |
-| Backend | Python |
-| Backend API | Python REST API |
-| Monitoring Agents | C# (.NET) |
-| Operating System Monitoring | Windows Event Logs |
-| Application Detection | Windows API / Process Monitoring |
-| Database | MySQL / SQLite |
-| API Communication | REST API |
-| Authentication | JWT |
-| Communication Format | JSON |
+| `computer-id.txt` | This PC's permanent ID. **If you clone a disk image, delete this file on each copy** so every PC makes its own |
+| `event-queue.jsonl` | Events not yet confirmed by the server. Safe to delete only if you accept losing them |
+| `Logs\agent-log.txt` | Local record of start/stop |
 
-## Expected Outcome
+## Behaviour worth knowing
 
-Upon completion, CLUMS will provide a centralized platform that automatically monitors laboratory computers and records student usage activities.
-
-The system will use C# agents to collect computer activities, a Python backend to process and manage monitoring data, and an HTML/CSS dashboard to present monitoring information to administrators.
-
-## Project Status
-
-**Development Stage:** Planning and Initial Development
-
-**Current Technology Stack:**
-
-- Frontend: HTML and CSS
-- Backend: Python
-- Monitoring Agents: C# (.NET)
-- Database: MySQL / SQLite
+- **Server down:** the agent keeps running, queues events (up to 10,000, oldest dropped after that), and sends them when the server is back. A message is logged once a minute, not every few seconds.
+- **Wrong key:** it logs a clear error and keeps the events queued.
+- **A bad event:** if the server rejects one event, the agent tries the others one by one and drops only the bad one.
+- **Network change:** if the IP or MAC changes, the agent registers again so the dashboard stays correct. Virtual adapters (VMware, VirtualBox, Hyper-V, VPN) are ignored; wired is preferred over Wi-Fi.
+- **Shutdown:** on stop it tries for 3 seconds to deliver `AGENT_STOPPED`; if it can't, the event is delivered on the next start.
