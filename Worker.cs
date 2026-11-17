@@ -31,7 +31,25 @@ public class Worker(
         WarnIfKeyTravelsUnencrypted();
 
         computer = BuildComputerDetails();
-        logger.LogInformation("Computer Information JSON:");
+
+string username = computerInfo.GetLoggedInUsername();
+
+logger.LogInformation(
+    "Currently running Windows user: {username}",
+    username
+);
+
+// Create and save a student login event
+await queue.EnqueueAsync(
+    AgentEvent.Create(
+        AgentEventTypes.StudentLogin,
+        computerUsername: username
+    )
+);
+
+logger.LogInformation("Student login event queued for {username}", username);
+
+logger.LogInformation("Computer Information JSON:");
         logger.LogInformation("{json}", JsonSerializer.Serialize(computer, ApiJson.Indented));
 
         try

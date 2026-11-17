@@ -6,4 +6,9 @@ public class ComputerInfo
     {
         return Environment.MachineName;
     }
+    
+    public string GetLoggedInUsername()
+    {
+        return Environment.UserName;
+    }
 }

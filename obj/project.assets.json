@@ -1518,19 +1518,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jaymark.pimentel\\.nuget\\packages\\": {}
+    "C:\\Users\\jayvince.singco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaymark.pimentel\\CLUMS-AGENT\\LabMonitorAgent.csproj",
+      "projectUniqueName": "C:\\Users\\jayvince.singco\\CLUMS-AGENT\\LabMonitorAgent.csproj",
       "projectName": "LabMonitorAgent",
-      "projectPath": "C:\\Users\\jaymark.pimentel\\CLUMS-AGENT\\LabMonitorAgent.csproj",
-      "packagesPath": "C:\\Users\\jaymark.pimentel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaymark.pimentel\\CLUMS-AGENT\\obj\\",
+      "projectPath": "C:\\Users\\jayvince.singco\\CLUMS-AGENT\\LabMonitorAgent.csproj",
+      "packagesPath": "C:\\Users\\jayvince.singco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jayvince.singco\\CLUMS-AGENT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jaymark.pimentel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jayvince.singco\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
