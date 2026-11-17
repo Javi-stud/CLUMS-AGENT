@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LabMonitorAgent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf5faff9fc7f8deb949a41cf59d8ebfd96895d60")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7d01c6817b0ffa614ec5687948286e31e4a3cd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("LabMonitorAgent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LabMonitorAgent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

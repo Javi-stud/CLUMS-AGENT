@@ -12,7 +12,8 @@ public class Worker(
     ComputerIdentity computerIdentity,
     BackendClient backend,
     EventQueue queue,
-    ApplicationMonitor applicationMonitor
+    ApplicationMonitor applicationMonitor,
+    WindowsSessionMonitor windowsSessionMonitor
 ) : BackgroundService
 {
     private const int BatchSize = 100;
@@ -33,22 +34,10 @@ public class Worker(
 
         computer = BuildComputerDetails();
 
-string username = computerInfo.GetLoggedInUsername();
+Task sessionMonitoringTask =
+    windowsSessionMonitor.RunAsync(stoppingToken);
 
-logger.LogInformation(
-    "Currently running Windows user: {username}",
-    username
-);
-
-// Create and save a student login event
-await queue.EnqueueAsync(
-    AgentEvent.Create(
-        AgentEventTypes.StudentLogin,
-        computerUsername: username
-    )
-);
-
-logger.LogInformation("Student login event queued for {username}", username);
+logger.LogInformation("Windows session monitoring task started");
 
 // Start application monitoring after the student login event.
 Task applicationMonitoringTask =
@@ -81,7 +70,10 @@ logger.LogInformation("Computer Information JSON:");
             // normal shutdown, handled below
         }
         
-        await applicationMonitoringTask;
+        await Task.WhenAll(
+    applicationMonitoringTask,
+    sessionMonitoringTask
+);
         await logWriter.LogEventAsync(AgentEventTypes.AgentStopped);
         await queue.EnqueueAsync(AgentEvent.Create(AgentEventTypes.AgentStopped));
         await TryFinalFlushAsync();

@@ -38,6 +38,7 @@ builder.Services.AddSingleton<EventQueue>();
 builder.Services.AddSingleton<BackendClient>();
 
 builder.Services.AddSingleton<ApplicationMonitor>();
+builder.Services.AddSingleton<WindowsSessionMonitor>();
 
 builder.Services.AddHostedService<Worker>();
 
