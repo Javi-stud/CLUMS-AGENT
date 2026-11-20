@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u5nyTRpEctI=",
+  "dgSpecHash": "SArbKlk49oM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jayvince.singco\\CLUMS\\LabMonitorAgent.csproj",
+  "projectFilePath": "C:\\Users\\jayvince.singco\\CLUMS-AGENT\\LabMonitorAgent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.15\\microsoft.extensions.configuration.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.15\\microsoft.extensions.configuration.abstractions.10.0.15.nupkg.sha512",
@@ -21,6 +21,8 @@
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\10.0.15\\microsoft.extensions.filesystemglobbing.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.hosting\\10.0.15\\microsoft.extensions.hosting.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\10.0.15\\microsoft.extensions.hosting.abstractions.10.0.15.nupkg.sha512",
+    "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.hosting.windowsservices\\10.0.15\\microsoft.extensions.hosting.windowsservices.10.0.15.nupkg.sha512",
+    "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.http\\10.0.15\\microsoft.extensions.http.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.logging\\10.0.15\\microsoft.extensions.logging.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.15\\microsoft.extensions.logging.abstractions.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.logging.configuration\\10.0.15\\microsoft.extensions.logging.configuration.10.0.15.nupkg.sha512",
@@ -31,7 +33,8 @@
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.options\\10.0.15\\microsoft.extensions.options.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\10.0.15\\microsoft.extensions.options.configurationextensions.10.0.15.nupkg.sha512",
     "C:\\Users\\jayvince.singco\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.15\\microsoft.extensions.primitives.10.0.15.nupkg.sha512",
-    "C:\\Users\\jayvince.singco\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.15\\system.diagnostics.eventlog.10.0.15.nupkg.sha512"
+    "C:\\Users\\jayvince.singco\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.15\\system.diagnostics.eventlog.10.0.15.nupkg.sha512",
+    "C:\\Users\\jayvince.singco\\.nuget\\packages\\system.serviceprocess.servicecontroller\\10.0.15\\system.serviceprocess.servicecontroller.10.0.15.nupkg.sha512"
   ],
   "logs": []
 }
